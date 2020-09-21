@@ -319,33 +319,15 @@ public class FlutterFFmpegPlugin implements MethodCallHandler, EventChannel.Stre
             if (mediaInformation.getFormat() != null) {
                 map.put("format", mediaInformation.getFormat());
             }
-            if (mediaInformation.getPath() != null) {
-                map.put("path", mediaInformation.getPath());
-            }
             if (mediaInformation.getStartTime() != null) {
-                map.put("startTime", mediaInformation.getStartTime().intValue());
+                map.put("startTime", mediaInformation.getStartTime());
             }
             if (mediaInformation.getDuration() != null) {
-                map.put("duration", mediaInformation.getDuration().intValue());
+                map.put("duration", mediaInformation.getDuration());
             }
             if (mediaInformation.getBitrate() != null) {
-                map.put("bitrate", mediaInformation.getBitrate().intValue());
+                map.put("bitrate", mediaInformation.getBitrate());
             }
-            if (mediaInformation.getRawInformation() != null) {
-                map.put("rawInformation", mediaInformation.getRawInformation());
-            }
-
-            final Set<Map.Entry<String, String>> metadata = mediaInformation.getMetadataEntries();
-            if ((metadata != null) && (metadata.size() > 0)) {
-                final HashMap<String, String> metadataMap = new HashMap<>();
-
-                for (Map.Entry<String, String> entry : metadata) {
-                    metadataMap.put(entry.getKey(), entry.getValue());
-                }
-
-                map.put("metadata", metadataMap);
-            }
-
             final List<StreamInformation> streams = mediaInformation.getStreams();
             if ((streams != null) && (streams.size() > 0)) {
                 final ArrayList<Map<String, Object>> array = new ArrayList<>();
@@ -380,9 +362,6 @@ public class FlutterFFmpegPlugin implements MethodCallHandler, EventChannel.Stre
             if (streamInformation.getFormat() != null) {
                 map.put("format", streamInformation.getFormat());
             }
-            if (streamInformation.getFullFormat() != null) {
-                map.put("fullFormat", streamInformation.getFullFormat());
-            }
             if (streamInformation.getWidth() != null) {
                 map.put("width", streamInformation.getWidth().intValue());
             }
@@ -390,10 +369,10 @@ public class FlutterFFmpegPlugin implements MethodCallHandler, EventChannel.Stre
                 map.put("height", streamInformation.getHeight().intValue());
             }
             if (streamInformation.getBitrate() != null) {
-                map.put("bitrate", streamInformation.getBitrate().intValue());
+                map.put("bitrate", streamInformation.getBitrate());
             }
             if (streamInformation.getSampleRate() != null) {
-                map.put("sampleRate", streamInformation.getSampleRate().intValue());
+                map.put("sampleRate", streamInformation.getSampleRate());
             }
             if (streamInformation.getSampleFormat() != null) {
                 map.put("sampleFormat", streamInformation.getSampleFormat());
@@ -418,28 +397,6 @@ public class FlutterFFmpegPlugin implements MethodCallHandler, EventChannel.Stre
             }
             if (streamInformation.getCodecTimeBase() != null) {
                 map.put("codecTimeBase", streamInformation.getCodecTimeBase());
-            }
-
-            final Set<Map.Entry<String, String>> metadata = streamInformation.getMetadataEntries();
-            if ((metadata != null) && (metadata.size() > 0)) {
-                final HashMap<String, String> metadataMap = new HashMap<>();
-
-                for (Map.Entry<String, String> entry : metadata) {
-                    metadataMap.put(entry.getKey(), entry.getValue());
-                }
-
-                map.put("metadata", metadataMap);
-            }
-
-            final Set<Map.Entry<String, String>> sidedata = streamInformation.getSidedataEntries();
-            if ((sidedata != null) && (sidedata.size() > 0)) {
-                final HashMap<String, String> sidedataMap = new HashMap<>();
-
-                for (Map.Entry<String, String> entry : sidedata) {
-                    sidedataMap.put(entry.getKey(), entry.getValue());
-                }
-
-                map.put("sidedata", sidedataMap);
             }
         }
 
